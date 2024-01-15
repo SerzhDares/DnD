@@ -1,0 +1,141 @@
+body {
+    background-color: rgb(158, 158, 238);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 100px;
+    width: 100%;
+}
+
+.column {
+    width: calc((1/3 * 100%) - 60px);
+    background-color: #e7e0e0;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.column:nth-child(n+2) {
+    margin-left: 30px;
+}
+
+.column_title {
+    font-weight: 800;
+    font-size: 20px;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.button {
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.textarea {
+    width: 100%;
+    resize: none;
+    border: none;
+    outline: none;
+    padding: 10px;
+    height: 80px;
+    font-size: 15px;
+    margin-bottom: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.button_container {
+    display: flex;
+}
+
+.add_button {
+    width: 30%;
+    background-color: rgb(69, 154, 69);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.add_button:hover {
+    background-color: green;
+}
+
+.close_add_button {
+    font-size: 20px;
+    font-weight: 800;
+    padding: 4px 10px 5px;
+    border: none;
+    background-color: #e7e0e0;
+    color:#575757;
+    margin-top: 3px;
+}
+
+.close_add_button:after,
+.delete_card_button:after {
+    content: '\2715';
+}
+
+.close_add_button:hover {
+    background-color: #cfcbcb;
+}
+
+.new_card_button {
+    background-color: #e7e0e0;
+    border: none;
+    font-size: 20px;
+    padding: 10px;
+    width: 100%;
+    text-align: start;
+    color:#575757;
+}
+
+.new_card_button:hover {
+    background-color: #cfcbcb;
+}
+
+.hide {
+    display: none;
+}
+
+.card {
+    width: 100%;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    position: relative;
+    margin-bottom: 10px;
+    min-height: 42px;
+    word-wrap: break-word;
+}
+
+.card:hover {
+    background-color: #f6f2f2;
+}
+
+.card_text {
+    width: 100%;
+}
+
+.delete_card_button {
+    background-color: #fff;
+    border: none;
+    font-size: 20px;
+    color: transparent;
+    background-color: transparent;
+    position: absolute;
+    top: 7px;
+    right: 10px;
+}
+
+.delete_card_button:hover {
+    background-color: #cfcbcb;
+}
