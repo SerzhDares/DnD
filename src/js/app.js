@@ -1,9 +1,10 @@
 // TODO: write code here
+import Visual from './Visual';
+import LocalStorageWork from './LocalStorageWork';
 import DnD from './dnd';
 
-console.log('app.js bundled');
-const dnd = new DnD();
-dnd.getFromLocalStorage();
-dnd.addNewCardBlock();
-dnd.closeAddNewCardBlock();
-dnd.addNewCard();
+const view = new Visual();
+const lsw = new LocalStorageWork();
+DnD();
+lsw.getFromLocalStorage();
+view.init();

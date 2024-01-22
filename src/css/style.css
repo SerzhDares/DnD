@@ -139,3 +139,8 @@ body {
 .delete_card_button:hover {
     background-color: #cfcbcb;
 }
+
+.card.dragged {
+    position: absolute;
+    cursor: grabbing;
+}

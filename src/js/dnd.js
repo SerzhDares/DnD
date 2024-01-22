@@ -1,84 +1,75 @@
-import cardTemplate from "./cardTemplate";
+export default function DnD() {
 
-export default class DnD {
-    constructor() {
-        this.newCardArr = document.querySelectorAll('.new_card_button');
-        this.closeAddArr = document.querySelectorAll('.close_add_button');
-        this.addNewCardBtns = document.querySelectorAll('.add_button');
-    }
+    const cardsContainer = document.querySelectorAll('.cards-container');
 
-    getFromLocalStorage() {
-        if (localStorage.length !== 0) {
-            Object.keys(localStorage).forEach(key => {
-                const value = localStorage.getItem(key);
-                if (value !== '\n') {
-                    document.querySelector(`[data-id="${key}"]`).insertAdjacentHTML('beforeend', cardTemplate(value));
-                }
-            })
-        }
-    }
+    let actualElement;
 
-    addNewCardBlock() {
-        this.newCardArr.forEach(el => {
-            el.addEventListener('click', ev => {
-                ev.target.classList.add('hide');
-                el.previousElementSibling.classList.remove('hide');
-            })
+    const onMouseUp = e => {
+        const mouseUpCard = e.target;
+
+        cardsContainer.forEach(container => {
+            container.insertBefore(actualElement, mouseUpCard);
         })
-    }
-
-    closeAddNewCardBlock() {
-        this.closeAddArr.forEach(el => {
-            el.addEventListener('click', () => {
-                const closestAcc = el.closest('.add_card_container');
-                closestAcc.classList.add('hide');
-                closestAcc.firstElementChild.value = '';
-                closestAcc.nextElementSibling.classList.remove('hide');
-
-            })
-        })
-    }
-
-    addNewCard() {
-        this.addNewCardBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const thisTextarea = btn.closest('.add_card_container').firstElementChild;
-                if (thisTextarea.value !== '') {
-                    btn.closest('.add_card_container').previousElementSibling.insertAdjacentHTML('beforeend', cardTemplate(thisTextarea.value));
-                    this.deleteCard();
-                    this.onCardMouseEvent();
-                    this.setToLocalStorage(btn.closest('.column').firstElementChild.nextElementSibling.dataset.id, thisTextarea.value);
-                }
-            })
-        })
-    }
-
-    deleteCard() {
-        document.querySelectorAll('.delete_card_button').forEach(btn => {
-            btn.addEventListener('click', () => {
-                localStorage.removeItem(btn.closest('.card'));
-                btn.closest('.card').remove();
-            })
-        })
-    }
-
-    onCardMouseEvent() {
-        document.querySelectorAll('.card').forEach(card => {
-            card.addEventListener('mouseover', () => {
-                card.lastElementChild.style.color = '#000';
-            })
-            card.addEventListener('mouseout', () => {
-                card.lastElementChild.style.color = '#fff';
-            })
-        })
-    }
-
-    setToLocalStorage(key, value) {
-        if (localStorage.getItem(key)) {
-            localStorage.setItem(key, localStorage.getItem(key) + '\n' + value); 
-        } else {
-            localStorage.setItem(key, value);
-        }
         
+        actualElement.classList.remove('dragged');
+        actualElement = undefined;
+
+        document.documentElement.removeEventListener('mouseup', onMouseUp);
+        document.documentElement.removeEventListener('mouseover', onMouseOver);
     }
+
+    const onMouseOver = e => {
+        console.log(e);
+
+        actualElement.style.top = e.clientY + 'px';
+        actualElement.style.left = e.clientX + 'px';
+    }
+
+    cardsContainer.forEach(container => {
+        container.addEventListener('mousedown', e => {
+            e.preventDefault();
+            actualElement = e.target;
+            actualElement.classList.add('dragged');
+
+            document.documentElement.addEventListener('mouseup', onMouseUp);
+            document.documentElement.addEventListener('mouseover', onMouseOver);
+        })
+    })
+
 }
+
+// export default class DnD {
+//     constructor() {
+//         this.cardsContainer = document.querySelectorAll('.cards-container');
+//         this.actualElement;
+//     }
+
+//     onMouseDown() {
+//         this.cardsContainer.forEach(container => {
+//             container.addEventListener('mousedown', e => {
+//                 e.preventDefault();
+
+//                 this.actualElement = e.target;
+//                 this.actualElement.classList.add('dragged');
+//             })
+
+//             container.addEventListener('mouseup', e => {
+//                 this.actualElement.classList.remove('dragged');
+//                 this.actualElement = undefined;
+//             });
+
+//             container.addEventListener('mouseover', e => {
+//                 e.target.style.top = e.clientY + 'px';
+//                 e.target.style.left = e.clientX + 'px';
+//             })
+            
+//         })
+//     }
+
+
+    // onMouseOver(e) {
+    //     e.target.style.top = e.clientY + 'px';
+    //     e.target.style.left = e.clientX + 'px';
+    // }
+// }
+
