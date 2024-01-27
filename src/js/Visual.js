@@ -1,6 +1,6 @@
 import cardTemplate from "./cardTemplate";
 import LocalStorageWork from "./LocalStorageWork";
-// import DnD from "./dnd";
+import DnD from "./dnd";
 
 
 export default class Visual {
@@ -49,6 +49,7 @@ export default class Visual {
                 }
                 this.onCardMouseEvent();
                 this.deleteCard();
+                // DnD();
             })
         })
     }
