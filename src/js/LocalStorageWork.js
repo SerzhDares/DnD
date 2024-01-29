@@ -28,6 +28,7 @@ export default class LocalStorageWork {
                 localStorage.setItem(container.dataset.id, container.innerText);
             } else {
                 localStorage.removeItem(container.dataset.id);
+
             }
             if(!localStorage.getItem(container.dataset.id)) {
                 localStorage.removeItem(container.dataset.id);
