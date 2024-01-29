@@ -152,6 +152,14 @@ body {
     background: none;
     border: none;
     width: 100%;
+    max-height: 0;
+    min-height: 0;
+    padding: 2px;
+}
+
+.emptySectionHiddenCard:hover {
+    background-color: #e7e0e0;
+    cursor: default;
 }
 
 .dragged {

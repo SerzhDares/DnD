@@ -29,7 +29,9 @@ export default class LocalStorageWork {
             } else {
                 localStorage.removeItem(container.dataset.id);
             }
+            if(!localStorage.getItem(container.dataset.id)) {
+                localStorage.removeItem(container.dataset.id);
+            }
         })
-    
     }
 }

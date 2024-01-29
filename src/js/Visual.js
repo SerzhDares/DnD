@@ -49,7 +49,7 @@ export default class Visual {
                 }
                 this.onCardMouseEvent();
                 this.deleteCard();
-                // DnD();
+                DnD();
             })
         })
     }
@@ -66,12 +66,14 @@ export default class Visual {
 
     onCardMouseEvent() {
         document.querySelectorAll('.card').forEach(card => {
-            card.addEventListener('mouseover', () => {
-                card.lastElementChild.style.color = '#000';
-            })
-            card.addEventListener('mouseout', () => {
-                card.lastElementChild.style.color = '#fff';
-            })
+            if (card && !card.classList.contains('emptySectionHiddenCard')) {
+                card.addEventListener('mouseover', () => {
+                    card.querySelector('.delete_card_button').style.color = '#000';
+                })
+                card.addEventListener('mouseout', () => {
+                    card.querySelector('.delete_card_button').style.color = '#fff';
+                })
+            }
         })
     }
 }
